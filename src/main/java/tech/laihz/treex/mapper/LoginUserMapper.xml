@@ -5,9 +5,13 @@
 
 <mapper namespace="tech.laihz.treex.mapper.LoginUserMapper">
     <insert id="addUser" parameterType="tech.laihz.treex.entity.LoginUser">
-INSERT INTO login_user(name,password) VALUES (#{name},#{password})
+        INSERT INTO login_user(name, password)
+        VALUES (#{name}, #{password})
     </insert>
-    <select id="getUserByName"  parameterType="tech.laihz.treex.entity.LoginUser" resultType="tech.laihz.treex.entity.LoginUser">
-        SELECT * FROM login_user WHERE name = #{name}
+    <select id="getUserByName" parameterType="tech.laihz.treex.entity.LoginUser"
+            resultType="tech.laihz.treex.entity.LoginUser">
+        SELECT *
+        FROM login_user
+        WHERE name = #{name}
     </select>
 </mapper>

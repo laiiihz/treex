@@ -5,18 +5,15 @@ import org.springframework.stereotype.Service;
 import tech.laihz.treex.entity.LoginUser;
 import tech.laihz.treex.mapper.LoginUserMapper;
 
-
 @Service
 public class LoginUserService {
-    @Autowired
-    LoginUserMapper loginUserMapper;
+  @Autowired LoginUserMapper loginUserMapper;
 
-    public int addUser(LoginUser loginUser){
-        return loginUserMapper.addUser(loginUser);
-    }
-    public LoginUser getUserByName(String name){
-        return loginUserMapper.getUserByName(name);
-    }
+  public int addUser(LoginUser loginUser) {
+    return loginUserMapper.addUser(loginUser);
+  }
 
-
+  public LoginUser getUserByName(String name) {
+    return loginUserMapper.getUserByName(name);
+  }
 }

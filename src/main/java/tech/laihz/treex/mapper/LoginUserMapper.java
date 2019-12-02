@@ -6,11 +6,10 @@ import tech.laihz.treex.entity.LoginUser;
 
 import java.util.List;
 
-
 @Mapper
 @Repository
 public interface LoginUserMapper {
-    int addUser(LoginUser user);
+  int addUser(LoginUser user);
 
-    LoginUser getUserByName(String name);
+  LoginUser getUserByName(String name);
 }

@@ -11,10 +11,10 @@ import java.util.List;
 
 @RestController
 public class TestController {
-    @RequestMapping(value = "/test",method = RequestMethod.GET)
-    public ResponseBo Test(){
-        List<ResponseBo> list =new ArrayList<ResponseBo>();
-        list.add(ResponseBo.error(500,""));
-        return ResponseBo.list(200,"fawefawef",100,list);
-    }
+  @RequestMapping(value = "/test", method = RequestMethod.GET)
+  public ResponseBo Test() {
+    List<ResponseBo> list = new ArrayList<ResponseBo>();
+    list.add(ResponseBo.error(500, ""));
+    return ResponseBo.list(200, "fawefawef", 100, list);
+  }
 }
