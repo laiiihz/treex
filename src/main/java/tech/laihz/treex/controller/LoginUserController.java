@@ -15,12 +15,32 @@ public class LoginUserController {
   @Autowired LoginUserService loginUserService;
   private final Jedis jedis = new Jedis("127.0.0.1", 6379);
 
+  /**
+   * @api {delete} /delete/:token
+   * @apiName delete token from redis
+   * @apiGroup auth
+   * @apiParam {String} token
+   * @apiSuccess {int} status
+   * @apiSuccess {String} message
+   */
   @DeleteMapping("/delete/{token}")
-  public RMap deleteUser(@PathVariable String token) {
+  public RMap deleteToken(@PathVariable String token) {
     jedis.del(token);
     return RMap.success(RMap.SUCCESS, "delete success");
   }
 
+
+  /**
+   * @api {get} /login
+   * @apiName login
+   * @apiParam {String} name
+   * @apiParam {String} password
+   * @apiGroup auth
+   * @apiSuccess {String} token
+   * @apiSuccess {int} status
+   * @apiSuccess {String} message
+   * @apiSuccess {int} loginStatus
+   */
   @GetMapping("/login")
   public RMap login(LoginUser loginUser) {
     LoginUser loginUserStorage = loginUserService.getUserByName(loginUser.getName());
@@ -42,6 +62,15 @@ public class LoginUserController {
     }
   }
 
+  /**
+   * @api {post} /newuser
+   * @apiGroup auth
+   * @apiName create a account
+   * @apiParam {String} name
+   * @apiParam {String} password
+   * @apiSuccess {int} status
+   * @apiSuccess {String} message
+   */
   @PostMapping("/newuser")
   public RMap newUser(LoginUser loginUser) {
     loginUserService.addUser(loginUser);
@@ -49,6 +78,14 @@ public class LoginUserController {
     return RMap.success(RMap.SUCCESS, "create dir success");
   }
 
+  /**
+   * @api {get} /existuser
+   * @apiName check account exist
+   * @apiGroup auth
+   * @apiParam {String} name
+   * @apiSuccess {int} status
+   * @apiSuccess {String} message
+   */
   @GetMapping("/existuser")
   public RMap existUser(LoginUser loginUser) {
     LoginUser loginUserNow = loginUserService.getUserByName(loginUser.getName());
