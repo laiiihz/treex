@@ -20,7 +20,7 @@ public class JWTUtil {
   private static final long EXPIRATION = 1800L;
 
   public static String createToken(LoginUser user) {
-    Date expireDate = new Date(System.currentTimeMillis() + EXPIRATION * 1000);
+    Date expireDate = new Date(System.currentTimeMillis() + EXPIRATION * 10000);
     Map<String, Object> map = new HashMap<>();
     map.put("alg", "HS256");
     map.put("typ", "JWT");

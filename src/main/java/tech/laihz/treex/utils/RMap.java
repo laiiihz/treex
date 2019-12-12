@@ -1,6 +1,9 @@
 package tech.laihz.treex.utils;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class RMap extends HashMap<String, Object> {
   public static final Integer SUCCESS = 200;
@@ -54,6 +57,26 @@ public class RMap extends HashMap<String, Object> {
     rMap.put("loginStatus", loginStatus);
     rMap.put("name", name);
     rMap.put("token", token);
+    return rMap;
+  }
+  public static List<RMap> singleFile(File[] files){
+    List<RMap> rMaps = new ArrayList<RMap>();
+    for(File single : files){
+      RMap rMap = new RMap();
+      rMap.put("name",single.getName());
+      rMap.put("isDir",single.isDirectory());
+      rMap.put("length",single.length());
+      rMap.put("date",single.lastModified());
+      rMaps.add(rMap);
+    }
+    return rMaps;
+  }
+
+  public static RMap file(Integer code, String msg, File file){
+    RMap rMap = new RMap();
+    rMap.put("status", code);
+    rMap.put("message",msg);
+    rMap.put("file",RMap.singleFile(file.listFiles()));
     return rMap;
   }
 

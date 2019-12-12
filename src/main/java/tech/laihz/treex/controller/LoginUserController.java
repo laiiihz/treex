@@ -63,7 +63,7 @@ public class LoginUserController {
   }
 
   /**
-   * @api {post} /newuser
+   * @api {put} /newuser
    * @apiGroup auth
    * @apiName create a account
    * @apiParam {String} name
@@ -71,7 +71,7 @@ public class LoginUserController {
    * @apiSuccess {int} status
    * @apiSuccess {String} message
    */
-  @PostMapping("/newuser")
+  @PutMapping("/newuser")
   public RMap newUser(LoginUser loginUser) {
     loginUserService.addUser(loginUser);
     new InitFileUtil(loginUser.getName());

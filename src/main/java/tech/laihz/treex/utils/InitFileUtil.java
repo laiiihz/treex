@@ -12,10 +12,6 @@ public class InitFileUtil {
   public InitFileUtil(String name) {
     File file = new File("FILESYSTEM" + File.separator + name);
     boolean result = file.mkdir();
-    String[] filesString = {"pics", "music", "movie", "docs", "others"};
-    for (String s : filesString) {
-      genDir(s, file.getPath());
-    }
   }
 
   private void genDir(String name, String path) {
