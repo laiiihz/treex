@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class RMap extends HashMap<String, Object> {
   public static final Integer SUCCESS = 200;
@@ -67,16 +68,18 @@ public class RMap extends HashMap<String, Object> {
       rMap.put("isDir",single.isDirectory());
       rMap.put("length",single.length());
       rMap.put("date",single.lastModified());
+      rMap.put("subLength",single.listFiles()==null?0: Objects.requireNonNull(single.listFiles()).length);
       rMaps.add(rMap);
     }
     return rMaps;
   }
 
-  public static RMap file(Integer code, String msg, File file){
+  public static RMap file(Integer code, String msg,String name, File file){
     RMap rMap = new RMap();
     rMap.put("status", code);
     rMap.put("message",msg);
-    rMap.put("file",RMap.singleFile(file.listFiles()));
+    rMap.put("name",name);
+    rMap.put("file",RMap.singleFile(Objects.requireNonNull(file.listFiles())));
     return rMap;
   }
 
