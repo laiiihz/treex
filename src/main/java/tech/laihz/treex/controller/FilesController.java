@@ -16,6 +16,12 @@ public class FilesController {
         return RMap.file(RMap.SUCCESS,"SUCCESS FETCH",name, new File("FILESYSTEM"+File.separator+name+File.separator+path));
     }
 
+    @GetMapping("share")
+    RMap getShareList(HttpServletRequest request){
+        String path = request.getParameter("path");
+        return RMap.file(RMap.SUCCESS,"SUCCESSFUL FETCH","share",new File("FILESYSTEM"+File.separator+"SHARE"+File.separator+path));
+    }
+
     @PutMapping("newFolder")
     RMap putFolder(HttpServletRequest request){
         String name = request.getAttribute("name").toString();
