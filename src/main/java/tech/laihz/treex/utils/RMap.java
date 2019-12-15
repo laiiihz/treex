@@ -84,6 +84,12 @@ public class RMap extends HashMap<String, Object> {
     rMap.put("file",RMap.singleFile(Objects.requireNonNull(file.listFiles())));
     return rMap;
   }
+  public static RMap avatars(Integer code ,boolean haveAvatar){
+    RMap rMap = new RMap();
+    rMap.put("status", code);
+    rMap.put("haveAvatar",haveAvatar);
+    return rMap;
+  }
 
   @Override
   public Object put(String key, Object value) {
