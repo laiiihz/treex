@@ -8,6 +8,10 @@
         INSERT INTO login_user(name, password)
         VALUES (#{name}, #{password})
     </insert>
+    <update id="setUserPhone" parameterType="String">
+        UPDATE login_user SET phone = #{phone}
+        WHERE name = #{name}
+    </update>
     <select id="getUserByName" parameterType="tech.laihz.treex.entity.LoginUser"
             resultType="tech.laihz.treex.entity.LoginUser">
         SELECT *

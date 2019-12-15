@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface LoginUserMapper {
   int addUser(LoginUser user);
+  int setUserPhone(String name,String phone);
 
   LoginUser getUserByName(String name);
 }

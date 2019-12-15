@@ -1,5 +1,7 @@
 package tech.laihz.treex.utils;
 
+import tech.laihz.treex.entity.LoginUser;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,12 +53,12 @@ public class RMap extends HashMap<String, Object> {
   public static final Integer LOGIN_PASSWORD_WRONG = 2002;
 
   public static RMap login(
-      Integer code, String msg, Integer loginStatus, String name, String token) {
+          Integer code, String msg, Integer loginStatus, LoginUser loginUser, String token) {
     RMap rMap = new RMap();
     rMap.put("status", code);
     rMap.put("message", msg);
     rMap.put("loginStatus", loginStatus);
-    rMap.put("name", name);
+    rMap.put("user", loginUser);
     rMap.put("token", token);
     return rMap;
   }

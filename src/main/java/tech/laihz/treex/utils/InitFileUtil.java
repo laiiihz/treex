@@ -22,7 +22,9 @@ public class InitFileUtil {
   public static void globalInit() {
     File file = new File("FILESYSTEM");
     File shareDir = new File(file.getPath() + File.separator + "SHARE");
+    File avatar = new File("AVATAR");
     boolean result = file.mkdir();
     boolean resultDir = shareDir.mkdir();
+    boolean resultAvatar = avatar.mkdir();
   }
 }

@@ -12,6 +12,9 @@ public class LoginUserService {
   public int addUser(LoginUser loginUser) {
     return loginUserMapper.addUser(loginUser);
   }
+  public int setUserPhone(String name,String phone){
+    return loginUserMapper.setUserPhone(name,phone);
+  }
 
   public LoginUser getUserByName(String name) {
     return loginUserMapper.getUserByName(name);
