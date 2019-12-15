@@ -5,6 +5,10 @@ import tech.laihz.treex.utils.RMap;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 
 @RestController
 @RequestMapping("api/intro")
@@ -68,5 +72,32 @@ public class FilesController {
         File deleteFile = new File("FILESYSTEM"+File.separator+name+File.separator+path);
         Boolean result = deleteFile.delete();
         return RMap.success(RMap.SUCCESS,"SUCCESS DELETE File");
+    }
+
+    @PutMapping("toShare")
+    RMap toShare(HttpServletRequest request) {
+        String name = request.getAttribute("name").toString();
+        String path = request.getParameter("path");
+        File origin = new File("FILESYSTEM"+File.separator+name+File.separator+path);
+        File target = new File("FILESYSTEM"+File.separator+"SHARE"+File.separator+path);
+        FileChannel originChannel = null;
+        FileChannel targetChannel = null;
+        try {
+            originChannel  = new FileInputStream(origin).getChannel();
+            targetChannel = new FileOutputStream(target).getChannel();
+            targetChannel.transferFrom(originChannel,0,originChannel.size());
+        }catch (IOException e){
+            return RMap.fail(RMap.SUCCESS,e.toString());
+        }finally {
+            try {
+                assert originChannel != null;
+                originChannel.close();
+                assert targetChannel != null;
+                targetChannel.close();
+            }catch (IOException e){
+                return RMap.fail(RMap.SUCCESS,e.toString());
+            }
+        }
+        return RMap.success(RMap.SUCCESS,"SUCCESS MOVE");
     }
 }
