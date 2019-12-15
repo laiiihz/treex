@@ -16,7 +16,7 @@ public class LoginUserController {
   private final Jedis jedis = new Jedis("127.0.0.1", 6379);
 
   /**
-   * @api {delete} /delete/:token
+   * @api {delete} /delete/:token 删除token接口
    * @apiName delete token from redis
    * @apiGroup auth
    * @apiParam {String} token
@@ -31,7 +31,7 @@ public class LoginUserController {
 
 
   /**
-   * @api {get} /login
+   * @api {get} /login 登录接口
    * @apiName login
    * @apiParam {String} name
    * @apiParam {String} password
@@ -63,7 +63,7 @@ public class LoginUserController {
   }
 
   /**
-   * @api {put} /newuser
+   * @api {put} /newuser 新建用户接口
    * @apiGroup auth
    * @apiName create a account
    * @apiParam {String} name
@@ -79,7 +79,7 @@ public class LoginUserController {
   }
 
   /**
-   * @api {get} /existuser
+   * @api {get} /existuser 检查用户存在性
    * @apiName check account exist
    * @apiGroup auth
    * @apiParam {String} name
