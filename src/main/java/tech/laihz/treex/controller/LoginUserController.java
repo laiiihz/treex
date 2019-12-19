@@ -53,7 +53,7 @@ public class LoginUserController {
           && loginUserStorage.getPassword().equals(loginUser.getPassword())) {
         // LOGIN SUCCESS
         String token = JWTUtil.createToken(loginUserStorage);
-        jedis.set(token, loginUser.getName());
+        jedis.setex(token, 100,loginUser.getName());
         return RMap.login(RMap.SUCCESS, "login success", RMap.LOGIN_SUCCESS, loginUserStorage, token);
       } else {
         // PASSWORD WRONG

@@ -23,7 +23,7 @@ public class JWTFilter implements Filter {
 
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
-    logger.info("init");
+    logger.info("init jwt filter");
   }
 
   @Override
@@ -33,7 +33,7 @@ public class JWTFilter implements Filter {
     final HttpServletResponse response = (HttpServletResponse) res;
     final Jedis jedis = new Jedis("127.0.0.1", 6379);
     response.setCharacterEncoding("UTF-8");
-    // 获取 header里的token
+    //get token from header
     final String token = request.getHeader("authorization");
     if ("OPTIONS".equals(request.getMethod())) {
       response.setStatus(HttpServletResponse.SC_OK);
