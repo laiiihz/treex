@@ -11,6 +11,7 @@ import java.util.List;
 public interface LoginUserMapper {
   int addUser(LoginUser user);
   int setUserPhone(String name,String phone);
-
+  int setAvatar(String name,String path);
   LoginUser getUserByName(String name);
+  String getAvatar(String name);
 }

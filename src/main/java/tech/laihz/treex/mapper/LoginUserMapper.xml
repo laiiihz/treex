@@ -12,10 +12,19 @@
         UPDATE login_user SET phone = #{phone}
         WHERE name = #{name}
     </update>
+    <update id="setAvatar" parameterType="String">
+        UPDATE login_user SET avatar = #{path}
+        WHERE name = #{name}
+    </update>
     <select id="getUserByName" parameterType="tech.laihz.treex.entity.LoginUser"
             resultType="tech.laihz.treex.entity.LoginUser">
         SELECT *
         FROM login_user
         WHERE name = #{name}
+    </select>
+    <select id="getAvatar" parameterType="String" resultType="String">
+        SELECT avatar
+        FROM login_user
+        WHERE name =#{name}
     </select>
 </mapper>

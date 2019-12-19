@@ -15,6 +15,9 @@ public class LoginUserService {
   public int setUserPhone(String name,String phone){
     return loginUserMapper.setUserPhone(name,phone);
   }
+  public int setAvatar(String name,String path){
+    return loginUserMapper.setAvatar(name,path);
+  }
 
   public LoginUser getUserByName(String name) {
     return loginUserMapper.getUserByName(name);

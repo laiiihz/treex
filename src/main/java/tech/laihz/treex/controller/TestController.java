@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import tech.laihz.treex.ResponseBo;
 import tech.laihz.treex.mapper.LoginUserMapper;
 import tech.laihz.treex.service.LoginUserService;
+import tech.laihz.treex.utils.FileUtil;
 import tech.laihz.treex.utils.RMap;
 
 import javax.servlet.http.HttpServletRequest;

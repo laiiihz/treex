@@ -65,11 +65,16 @@ public class RMap extends HashMap<String, Object> {
   public static List<RMap> singleFile(File[] files){
     List<RMap> rMaps = new ArrayList<RMap>();
     for(File single : files){
+      String rawPath = single.getPath();
+      int index = rawPath.indexOf(".");
+      String path = rawPath.substring(index);
+      path = path.replace(File.separator,"/");
       RMap rMap = new RMap();
       rMap.put("name",single.getName());
       rMap.put("isDir",single.isDirectory());
       rMap.put("length",single.length());
       rMap.put("date",single.lastModified());
+      rMap.put("path",path);
       rMap.put("subLength",single.listFiles()==null?0: Objects.requireNonNull(single.listFiles()).length);
       rMaps.add(rMap);
     }
@@ -77,10 +82,21 @@ public class RMap extends HashMap<String, Object> {
   }
 
   public static RMap file(Integer code, String msg,String name, File file){
+    String rawPath = file.getParentFile().getPath();
+    int index = rawPath.indexOf(".");
+    String path = "";
+    if(index==-1){
+      path = null;
+    }else {
+      path= rawPath.substring(index);
+      path = path.replace(File.separator,"/");
+    }
     RMap rMap = new RMap();
     rMap.put("status", code);
     rMap.put("message",msg);
     rMap.put("name",name);
+    rMap.put("separator",File.separator);
+    rMap.put("path",path);
     rMap.put("file",RMap.singleFile(Objects.requireNonNull(file.listFiles())));
     return rMap;
   }
@@ -88,6 +104,14 @@ public class RMap extends HashMap<String, Object> {
     RMap rMap = new RMap();
     rMap.put("status", code);
     rMap.put("haveAvatar",haveAvatar);
+    return rMap;
+  }
+
+  public static RMap space(Integer code,long used,long free){
+    RMap rMap = new RMap();
+    rMap.put("status", code);
+    rMap.put("used", used);
+    rMap.put("free",free);
     return rMap;
   }
 
